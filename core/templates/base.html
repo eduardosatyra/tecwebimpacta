@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+   {% include '.\includes\head\head.html'%}
+</head>
+<body>
+  <header>
+    {% include '.\includes\header\navbar.html'%}
+  </header>
+  <main>
+    <div class="container">
+      {% block container %}
+      
+      {% endblock container %}
+    <div>
+	</main>
+
+	<footer>
+    {% include '.\includes\footer\links.html' %}
+	</footer>
+		
+</body>
+  {% include '.\includes\scripts\scripts.html' %}
+</html> 
