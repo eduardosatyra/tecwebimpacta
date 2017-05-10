@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 
 import os
-from dj_database_url import parse as dburl
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -26,7 +25,8 @@ SECRET_KEY = '*5!uka65v7d1m=f!h2x%fmat*o86kof=jdbj@(tsf+i)b07u#2'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ecommercedjang.herokuapp.com']
+ALLOWED_HOSTS = []
+
 
 # Application definition
 
@@ -83,7 +83,6 @@ DATABASES = {
 }
 
 
-
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 
@@ -120,7 +119,3 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
