@@ -1,16 +1,16 @@
 from django.shortcuts import render
 
 def index(request):
-    return render(request, '.\pages\index.html')
+    return render(request, 'index.html')
 
 
 def contact(request):
-    return render(request, '.\pages\contact.html')
+    return render(request, 'contact.html')
 
 
 def product_list(request):
-    return render(request, '.\pages\product_list.html')
+    return render(request, 'product_list.html')
 
 
 def product(request):
-    return render(request, '.\pages\product.html')
+    return render(request, 'product.html')
