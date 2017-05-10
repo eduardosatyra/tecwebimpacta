@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
-    'materialize',
 ]
 
 MIDDLEWARE = [
@@ -130,7 +129,3 @@ ALLOWED_HOSTS = ['*']
 
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 
-try:
-    from .local_settings import *
-except ImportError:
-    pass
