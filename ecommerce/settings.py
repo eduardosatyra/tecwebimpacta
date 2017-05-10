@@ -28,7 +28,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['ecommercedjang.herokuapp.com']
 
-
 # Application definition
 
 INSTALLED_APPS = [
