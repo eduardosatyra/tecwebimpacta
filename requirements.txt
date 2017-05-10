@@ -2,4 +2,3 @@ dj-database-url
 dj-static
 gunicorn
 psycopg2
-Django
