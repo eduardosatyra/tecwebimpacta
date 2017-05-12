@@ -31,7 +31,7 @@ class Product(models.Model):
 
     created = models.DateTimeField('Criado em', auto_now_add=True)
     modified = models.DateTimeField('Modificado em', auto_now=True)
-
+    
     class Meta:
         verbose_name = 'Produto'
         verbose_name_plural = 'Produtos'
