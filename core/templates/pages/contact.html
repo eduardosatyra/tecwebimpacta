@@ -11,10 +11,7 @@
       <div class="alert alert-sucess">
           Mensagem enviada com sucesso!
       </div>
-      {% else %}
-      <div class="alert alert-sucess">
-          Mensagem não foi enviada, dados inválidos.
-      </div>
+
       {% endif %}
 			<form class="form-horizontal" action="" method="post">
         {% csrf_token %}
