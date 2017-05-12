@@ -13,5 +13,4 @@ def index(request):
 def contact(request):
     return render(request, 'pages/contact.html')
 
-def product(request):
-    return render(request, 'pages/product.html')
+
