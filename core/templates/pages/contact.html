@@ -1,18 +1,20 @@
 {% extends "base.html" %}
+
 {% load widget_tweaks %}
+
 {% block title %}
-		Contato || {{block.super}}
+    Contato | {{ block.super }}
 {% endblock %}
 
 {% block container %}
-	<div class="page-header">
-			<h1>Fale conosco</h1>
-      {% if sucess %}
-      <div class="alert alert-sucess">
-          Mensagem enviada com sucesso!
-      </div>
-      {% endif %}
-			<form class="form-horizontal" action="" method="post">
+<div class="page-header">
+    <h1>Fale conosco</h1>
+    {% if success %}
+    <div class="alert alert-success">
+        Mensagem enviada com sucesso
+    </div>
+    {% endif %}
+    <form class="form-horizontal" action="" method="post">
         {% csrf_token %}
         <fieldset>
             {% for field in form %}
@@ -33,6 +35,5 @@
             </div>
         </fieldset>
     </form>
-		</div>
+</div>
 {% endblock %}
-

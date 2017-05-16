@@ -1,7 +1,6 @@
-"""ecommerce URL Configuration
-
+"""djangoecommerce URL Configuration
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/1.11/topics/http/urls/
+    https://docs.djangoproject.com/en/1.9/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -27,7 +26,7 @@ urlpatterns = [
     url(r'^contato/$', views.contact, name='contact'),
     url(r'^entrar/$', login, {'template_name': 'pages/login.html'}, name='login'),
     url(r'^sair/$', logout, {'next_page': 'index'}, name='logout'),
-    url(r'^registro/$', views.register, name='register'),
-    url(r'^catalogo/', include('catalog.urls', namespace="catalog")),
+    url(r'^catalogo/', include('catalog.urls', namespace='catalog')),
+    url(r'^conta/', include('accounts.urls', namespace='accounts')),
     url(r'^admin/', admin.site.urls),
 ]

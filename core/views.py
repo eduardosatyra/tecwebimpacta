@@ -6,6 +6,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic import View, TemplateView, CreateView
 from django.contrib.auth import get_user_model
+from django.contrib import messages
 
 from .forms import ContactForm
 
@@ -19,26 +20,15 @@ class IndexView(TemplateView):
 index = IndexView.as_view()
 
 def contact(request):
-    sucess = False
+    success = False
     form = ContactForm(request.POST or None)
     if form.is_valid():
-        form.send_mail
-        sucess = True
-    else:
-        form = ContactForm()
+        form.send_mail()
+        success = True
+    elif request.method == 'POST':
+        messages.error(request, 'Formulário inválido')
     context = {
         'form': form,
-        'sucess': sucess
+        'success': success
     }
     return render(request, 'pages/contact.html', context)
-
-
-class RegisterView(CreateView):
-
-    form_class = UserCreationForm
-    template_name = 'pages/register.html'
-    model = User
-    success_url = reverse_lazy('index')
-
-
-register = RegisterView.as_view()
