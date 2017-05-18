@@ -53,7 +53,6 @@ class ContactViewTestCase(TestCase):
         self.assertEquals(len(mail.outbox), 1)
         self.assertEquals(mail.outbox[0].subject, 'Contato do Django E-Commerce')
 
-
 class LoginViewTestCase(TestCase):
 
     def setUp(self):

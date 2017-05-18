@@ -25,8 +25,6 @@ def contact(request):
     if form.is_valid():
         form.send_mail()
         success = True
-    elif request.method == 'POST':
-        messages.error(request, 'Formulário inválido')
     context = {
         'form': form,
         'success': success
