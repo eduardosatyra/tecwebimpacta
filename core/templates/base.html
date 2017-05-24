@@ -7,17 +7,22 @@
   <header>
     {% include 'includes/header/navbar.html'%}
   </header>
-  <main>
-    <div class="container">
-      {% block container %}
+  
+  
+  <main >
+      {% include 'includes/main/messages-alert.html' %}
+      <div class="container">
+        {% block container %}
       
-      {% endblock container %}
-    <div>
+        {% endblock container %}
+      </div>
 	</main>
 
+  
 	<footer>
     {% include 'includes/footer/links.html' %}
 	</footer>
+  </div>
 		
 </body>
   {% include 'includes/scripts/scripts.html' %}
