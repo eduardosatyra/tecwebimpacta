@@ -17,17 +17,11 @@ Finalização da Compra
 <div class="page-header">
     <h1>Escolha a forma de pagamento</h1>
 </div>
-<div class="row">
-    <div class="col-me-12">
-      <p>
-        Pedido #{{ order.pk }}
-      </p>
-    </div>
     <div class="col-md-4 col-md-offset-2">
         <a href="{% url 'checkout:pagseguro_view' order.pk %}" class="btn btn-success"> Pagar com PagSeguro </a>
     </div>
     <div class="col-md-2">
-        <a href="#" class="btn btn-primary"> Pagar com Paypal </a>
+        <a href="{% url 'checkout:paypal_view' order.pk %}" class="btn btn-primary"> Pagar com Paypal </a>
     </div>
 </div>
 {% endblock %}
