@@ -1,5 +1,8 @@
 # coding=utf-8
 
+from pagseguro import PagSeguro
+
+from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import get_object_or_404, redirect
 from django.views.generic import (
     RedirectView, TemplateView, ListView, DetailView
@@ -8,6 +11,8 @@ from django.forms import modelformset_factory
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.urlresolvers import reverse
+from django.conf import settings
+from django.http import HttpResponse
 
 from catalog.models import Product
 
