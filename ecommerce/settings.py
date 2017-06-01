@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'accounts',
     'catalog',
     'checkout',
-    
+
 ]
 
 MIDDLEWARE = [
@@ -166,6 +166,10 @@ MESSAGE_TAGS = {
     messages_constants.WARNING: 'warning',
     messages_constants.ERROR: 'danger',
 }
+
+PAGSEGURO_TOKEN = '80FF0FB90C3C41D487B78B459153032A'
+PAGSEGURO_EMAIL = 'edufelipefreitas2@yahoo.com.br'
+PAGSEGURO_SANDBOX = True
 
 
 try:
