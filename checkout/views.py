@@ -1,16 +1,14 @@
 # coding=utf-8
 
 from pagseguro import PagSeguro
-
 from paypal.standard.forms import PayPalPaymentsForm
 from paypal.standard.models import ST_PP_COMPLETED
 from paypal.standard.ipn.signals import valid_ipn_received
-
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import get_object_or_404, redirect
 from django.views.generic import (
     RedirectView, TemplateView, ListView, DetailView
-)
+    )
 from django.forms import modelformset_factory
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin

@@ -28,10 +28,13 @@ class Product(models.Model):
     category = models.ForeignKey('catalog.Category', verbose_name='Categoria')
     descripition = models.TextField('Descrição', blank=True)
     price = models.DecimalField('Preço', decimal_places=2, max_digits=10)
+    image = models.ImageField(
+        'Imagem', upload_to='products', blank=True, null=True
+        )
 
     created = models.DateTimeField('Criado em', auto_now_add=True)
     modified = models.DateTimeField('Modificado em', auto_now=True)
-    
+
     class Meta:
         verbose_name = 'Produto'
         verbose_name_plural = 'Produtos'
@@ -39,7 +42,7 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
-    
+
 #CRIAR URL DA CATEGORIA (LISTAR PRODUTOS)
     def get_absolute_url(self):
         return reverse('catalog:product', kwargs={'slug': self.slug})
