@@ -1,16 +1,26 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
 from django.core.paginator import Paginator
+from django.db import models
 
 from .models import Product, Category
 
 
 class ProductListView(generic.ListView):
 
-    model = Product
     template_name = 'catalog/product_list.html'
     context_object_name = 'products'
-    paginate_by = 3
+    paginate_by = 12
+
+    def get_queryset(self):
+        queryset = Product.objects.all()
+        search = self.request.GET.get('search', '')
+        if search:
+            queryset = queryset.filter(
+                models.Q(name__icontains=search) | models.Q(category__name__icontains=search) \
+                | models.Q(descripition__icontains=search)
+            )
+        return queryset
 
 
 product_list = ProductListView.as_view()

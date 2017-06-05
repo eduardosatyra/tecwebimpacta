@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'paypal.standard.ipn',
     'widget_tweaks',
+    'easy_thumbnails',
     'core',
     'accounts',
     'catalog',
@@ -130,6 +131,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+MEDIA_URL = '/media/'
+
 db_from_env = dj_database_url.config(conn_max_age=500)
 
 DATABASES['default'].update(db_from_env)
@@ -177,6 +180,15 @@ PAGSEGURO_SANDBOX = True
 
 PAYPAL_TEST = True
 PAYPAL_EMAIL = 'edufelipefreitas2@yahoo.com.br'
+
+#THUMBNAILS
+
+THUMBNAIL_ALIASES = {
+    '': {
+        'product_image': {'size': (350,200), 'crop': True},
+    },
+}
+
 
 try:
     from .local_settings import *
