@@ -28,6 +28,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['ecommercedjang.herokuapp.com']
 
+ADMINS = (
+    ('Eduardo', 'edufelipefreitas2@yahoo.com.br'),
+)
+
 
 # Application definition
 
@@ -41,6 +45,7 @@ INSTALLED_APPS = [
     'paypal.standard.ipn',
     'widget_tweaks',
     'easy_thumbnails',
+    'watson',
     'core',
     'accounts',
     'catalog',
@@ -178,7 +183,7 @@ PAGSEGURO_EMAIL = 'edufelipefreitas2@yahoo.com.br'
 PAGSEGURO_SANDBOX = True
 
 
-PAYPAL_TEST = True
+PAYPAL_TEST = False
 PAYPAL_EMAIL = 'edufelipefreitas2@yahoo.com.br'
 
 #THUMBNAILS
@@ -187,6 +192,50 @@ THUMBNAIL_ALIASES = {
     '': {
         'product_image': {'size': (350,200), 'crop': True},
     },
+}
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'cache',
+    }
+}
+
+# Logging
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse',
+        },
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',
+        },
+    },
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+    'handlers': {
+        'checkout.views': {
+            # 'class': 'logging.StreamHandler',     #ADICIONAR PRODUTO MOSTRANDO NO TERMINAL
+            'class': 'logging.FileHandler',
+            'level': 'DEBUG',
+            'filters': ['require_debug_true'],
+            'filename': os.path.join(BASE_DIR, 'checkout.views.log'),
+        }
+    },
+    'loggers': {
+        'checkout.views': {
+            'handlers': ['checkout.views'],
+            'level': 'DEBUG',
+        }
+    }
 }
 
 

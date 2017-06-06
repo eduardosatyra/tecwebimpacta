@@ -1,5 +1,7 @@
 # coding=utf-8
 
+import logging
+import json
 from pagseguro import PagSeguro
 from paypal.standard.forms import PayPalPaymentsForm
 from paypal.standard.models import ST_PP_COMPLETED
@@ -7,7 +9,7 @@ from paypal.standard.ipn.signals import valid_ipn_received
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import get_object_or_404, redirect
 from django.views.generic import (
-    RedirectView, TemplateView, ListView, DetailView
+    RedirectView, TemplateView, ListView, DetailView, View
     )
 from django.forms import modelformset_factory
 from django.contrib import messages
@@ -21,20 +23,29 @@ from catalog.models import Product
 from .models import CartItem, Order
 
 
-class CreateCartItemView(RedirectView):
+logger = logging.getLogger('checkout.views')
 
-    def get_redirect_url(self, *args, **kwargs):
+
+class CreateCartItemView(View):
+
+    def get(self, request, *args, **kwargs):
         product = get_object_or_404(Product, slug=self.kwargs['slug'])
+        logger.debug('Produto %s adicionado ao seu fodendo carrinho de super compras!!' %product)
         if self.request.session.session_key is None:
             self.request.session.save()
         cart_item, created = CartItem.objects.add_item(
             self.request.session.session_key, product
         )
         if created:
-            messages.success(self.request, 'Produto adicionado com sucesso')
+            message = 'Produto adicionado com sucesso'
         else:
-            messages.success(self.request, 'Produto atualizado com sucesso')
-        return reverse('checkout:cart_item')
+            message = 'Produto atualizado com sucesso'
+        if request.is_ajax():
+            return HttpResponse(
+                json.dumps({'message': message}), content_type='application/javascript'
+                )
+        messages.success(request, message)
+        return redirect('checkout:cart_item')
 
 
 class CartItemView(TemplateView):

@@ -3,7 +3,10 @@ from django.views import generic
 from django.core.paginator import Paginator
 from django.db import models
 
+from django.views.decorators.cache import cache_page
+
 from .models import Product, Category
+from watson import search as watson
 
 
 class ProductListView(generic.ListView):
@@ -16,9 +19,8 @@ class ProductListView(generic.ListView):
         queryset = Product.objects.all()
         search = self.request.GET.get('search', '')
         if search:
-            queryset = queryset.filter(
-                models.Q(name__icontains=search) | models.Q(category__name__icontains=search) \
-                | models.Q(descripition__icontains=search)
+            queryset = watson.filter(
+                queryset, search
             )
         return queryset
 
@@ -44,6 +46,7 @@ class CategoryListView(generic.ListView):
 category = CategoryListView.as_view()
 
 
+@cache_page(60 * 2)
 def product(request, slug):
     product = Product.objects.get(slug=slug)
     context = {

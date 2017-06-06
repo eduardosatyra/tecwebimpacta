@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
 {% load pagination %}
 
@@ -18,3 +18,21 @@
 {% pagination request paginator page_obj %}
 {% endblock %}
 
+<!-- PARA ADD ESSE JS EM CATEGORY TEM QUE ADD EM CATEGORY -->
+
+{% block scripts %}
+<script type="text/javascript">
+$(function(){
+    $('.cart-item-add').on('click', function(e){
+        e.preventDefault();
+        $.ajax({
+            url: $(this).attr('href'),
+            dataType: 'json',
+            success: function(data, textStatus, jqXHR){
+                alert(data.message);
+            }
+        });
+    });
+});
+</script>
+{% endblock %}
